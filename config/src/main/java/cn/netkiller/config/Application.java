@@ -2,15 +2,13 @@ package cn.netkiller.config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.config.server.EnableConfigServer;
 
-@EnableDiscoveryClient
 @EnableConfigServer
 @SpringBootApplication
 public class Application {
 	public static void main(String[] args) {
-		System.out.println("Spring Cloud Config Server Starting...");
+		System.out.println("Config Server Starting...");
 		SpringApplication.run(Application.class, args);
 	}
 }

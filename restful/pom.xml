@@ -30,7 +30,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>cn.netkiller.config.Application</mainClass>
+					<mainClass>cn.netkiller.Application</mainClass>
 				</configuration>
 			</plugin>
 			<plugin>

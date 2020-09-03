@@ -1,16 +1,14 @@
-package cn.netkiller.restful;
+package cn.netkiller.eureka;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 @SpringBootApplication
-@EnableEurekaClient
+@EnableEurekaServer
 public class Application {
-
 	public static void main(String[] args) {
-		System.out.println("Restful!");
+		System.out.println("Eureka Server Starting......");
 		SpringApplication.run(Application.class, args);
 	}
-
 }

@@ -1,4 +1,4 @@
-package cn.netkiller.restful.controller;
+package cn.netkiller.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +25,7 @@ public class TestController {
 
 	@GetMapping("/add")
 	public Integer add(@RequestParam Integer a, @RequestParam Integer b) {
-		Integer r = a + b;
-		return r;
+		Integer sum = a + b;
+		return sum;
 	}
 }
