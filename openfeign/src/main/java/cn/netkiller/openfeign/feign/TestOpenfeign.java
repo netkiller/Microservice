@@ -1,12 +1,10 @@
-package cn.netkiller.openfeign;
+package cn.netkiller.openfeign.feign;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import reactor.core.publisher.Mono;
-
-@FeignClient("webflux")
+@FeignClient(name = "restful")
 public interface TestOpenfeign {
-	@GetMapping("/name")
-	Mono<String> name();
+	@GetMapping("/config")
+	String config();
 }

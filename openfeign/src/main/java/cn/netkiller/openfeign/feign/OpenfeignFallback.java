@@ -1,3 +1,4 @@
+package cn.netkiller.openfeign.feign;
 //package cn.netkiller.openfeign;
 //
 //import reactor.core.publisher.Mono;
