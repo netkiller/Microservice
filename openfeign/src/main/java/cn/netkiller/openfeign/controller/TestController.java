@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.netkiller.openfeign.feign.TestOpenfeign;
+import cn.netkiller.openfeign.feign.WebfluxOpenfeign;
+import reactor.core.publisher.Mono;
 
 @RestController
 public class TestController {
@@ -39,6 +41,14 @@ public class TestController {
 				+ serviceInstance.getPort());
 
 		return serviceInstance.toString();
+	}
+
+	@Autowired
+	private WebfluxOpenfeign webfluxOpenfeign;
+
+	@GetMapping("/webflux/name")
+	public Mono<String> name() {
+		return this.webfluxOpenfeign.name();
 	}
 
 }

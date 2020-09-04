@@ -23,8 +23,8 @@ public class TestController {
 	@Value("${name:Neo default}")
 	private String name;
 
-	@Value("${nickname}")
-	private String nickname;
+//	@Value("${nickname}")
+//	private String nickname;
 
 	public TestController() {
 
@@ -41,10 +41,10 @@ public class TestController {
 		return Mono.just(this.name);
 	}
 
-	@GetMapping("/nickname")
-	public Mono<String> nickname() {
-		return Mono.just(this.nickname);
-	}
+//	@GetMapping("/nickname")
+//	public Mono<String> nickname() {
+//		return Mono.just(this.nickname);
+//	}
 
 	@GetMapping("/info")
 	public Mono<String> hello() {
