@@ -41,7 +41,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.3.3.RELEASE</version>
-		<relativePath />
+		<relativePath/>
 	</parent>
 
 	<repositories>
@@ -101,5 +101,6 @@
 		<module>webflux</module>
 		<module>openfeign</module>
 		<module>restful</module>
-	</modules>
+    <module>sleuth</module>
+  </modules>
 </project>
