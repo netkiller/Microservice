@@ -31,7 +31,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>cn.netkiller.eureka.Application</mainClass>
+					<mainClass>cn.netkiller.eureka.EurekaApplication</mainClass>
 				</configuration>
 			</plugin>
 			<plugin>
