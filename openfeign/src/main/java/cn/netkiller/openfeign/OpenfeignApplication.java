@@ -8,9 +8,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableFeignClients
-public class Application {
+public class OpenfeignApplication {
 	public static void main(String[] args) {
 		System.out.println("Openfeign!");
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(OpenfeignApplication.class, args);
 	}
 }
