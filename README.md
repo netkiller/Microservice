@@ -5,5 +5,10 @@ Spring Cloud Exampe
 
 # Config
 
-iMac:Java neo$ curl http://localhost:8769/config-client-dev.json
-{"server":{"port":8762},"foo":"foo version 1"}
+	iMac:Java neo$ curl http://localhost:8888/config-client-dev.json
+	{"server":{"port":8762},"foo":"foo version 1"}
+	
+	iMac:resources neo$ curl -k https://config:s3cr3t@localhost:8888/netkiller-dev.json
+	{"sms":{"gateway":{"url":"https://sms.netkiller.cn/v1","username":"netkiller","password":"123456"}}}
+	
+	
