@@ -102,5 +102,6 @@
 		<module>openfeign</module>
 		<module>restful</module>
     <module>sleuth</module>
-  </modules>
+    <module>oauth2</module>
+	</modules>
 </project>
