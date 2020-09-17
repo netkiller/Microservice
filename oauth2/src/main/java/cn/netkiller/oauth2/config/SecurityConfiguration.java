@@ -20,16 +20,19 @@ import org.springframework.security.oauth2.server.authorization.client.Registere
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 //@Order(90)
-@EnableWebSecurity
-//@Import(OAuth2AuthorizationServerConfiguration.class)
+//@EnableWebSecurity
+@Configuration
+@Import(OAuth2AuthorizationServerConfiguration.class)
 public class SecurityConfiguration {
 	@Bean
 	public RegisteredClientRepository registeredClientRepository() {
-		RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString()).clientId("messaging-client").clientSecret("secret").clientAuthenticationMethod(ClientAuthenticationMethod.BASIC)
+		RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString()).clientId("client")
+				.clientSecret("secret").clientAuthenticationMethod(ClientAuthenticationMethod.BASIC)
 				// Authorization Code Grant Type
 				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
 				// Client Credentials Grant Type
-				.authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS).redirectUri("http://example.com").scope("message.read").scope("message.write").build();
+				.authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS).redirectUri("http://example.com")
+				.scope("message.read").scope("message.write").build();
 		return new InMemoryRegisteredClientRepository(registeredClient);
 	}
 
@@ -40,9 +43,14 @@ public class SecurityConfiguration {
 
 	@Bean
 	public UserDetailsService users() {
-		UserDetails user = User.withDefaultPasswordEncoder().username("user1").password("password").roles("USER").build();
+//		User.withUserDetails(userDetails)
+		UserDetails user = User.withDefaultPasswordEncoder()
+				// Username
+				.username("user")
+				// Password
+				.password("password")
+				// roles
+				.roles("USER").build();
 		return new InMemoryUserDetailsManager(user);
 	}
 }
-
-//curl http://messaging-client:secret@127.0.0.1:9000/oauth2/authorize?client_id=messaging-client&redirect_uri=http://example.com&response_type=code&scope=message.read
