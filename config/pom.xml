@@ -21,7 +21,10 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-config-server</artifactId>
 		</dependency>
-		<!-- <dependency> <groupId>org.springframework.cloud</groupId> <artifactId>spring-cloud-config-monitor</artifactId> </dependency> -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-config-monitor</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -40,6 +43,37 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>1.2.2</version>
+				<configuration>
+					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+					<baseImage>openjdk</baseImage>
+					<tag>${project.version}</tag>
+					<maintainer>${docker.maintainer}</maintainer>
+					<volumes>/tmp</volumes>
+					<workdir>/srv</workdir>
+					<cmd>["java", "-version"]</cmd>
+					<exposes>8888</exposes>
+					<entryPoint>["java", "-jar", "-Djava.security.egd=file:/dev/./urandom", "/srv/${project.build.finalName}.jar"]</entryPoint>
+					<resources>
+						<resource>
+							<targetPath>/srv</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
+					<image>${docker.image.prefix}/${project.artifactId}</image>
+					<newName>${docker.image.prefix}/${project.artifactId}:${project.version}</newName>
+					<serverId>docker-hub</serverId>
+					<registryUrl>https://index.docker.io/v1/</registryUrl>
+					<imageTags>
+						<imageTag>${project.version}</imageTag>
+						<imageTag>latest</imageTag>
+					</imageTags>
 				</configuration>
 			</plugin>
 		</plugins>
