@@ -35,6 +35,10 @@
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<maven.compiler.release>${java.version}</maven.compiler.release>
+		<spring-boot.version>2.3.4.RELEASE</spring-boot.version>
+		<spring-cloud.version>Hoxton.SR8</spring-cloud.version>
+		<docker.registry>127.0.0.1:5000</docker.registry>
+		<docker.registry.name>netkiller</docker.registry.name>
 		<docker.image.prefix>netkiller</docker.image.prefix>
 	</properties>
 
@@ -64,7 +68,7 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Hoxton.SR8</version>
+				<version>${spring-cloud.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -110,6 +114,7 @@
 					<skip>true</skip>
 				</configuration>
 			</plugin>
+			<!-- 
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
@@ -144,7 +149,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin> -->
 		</plugins>
 	</build>
 
