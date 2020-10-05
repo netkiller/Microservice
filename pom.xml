@@ -60,7 +60,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.3.4.RELEASE</version>
-		<relativePath />
+		<relativePath/>
 	</parent>
 
 	<dependencyManagement>
@@ -104,7 +104,8 @@
 		<module>restful</module>
 		<module>sleuth</module>
 		<module>oauth2</module>
-	</modules>
+    <module>welcome</module>
+  </modules>
 
 	<build>
 		<plugins>
