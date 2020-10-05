@@ -7,9 +7,9 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>cn.netkiller</groupId>
-	<artifactId>eureka-server</artifactId>
+	<artifactId>eureka</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>eureka-server</name>
+	<name>eureka</name>
 	<url>http://www.netkiller.cn</url>
 	<description>Spring Cloud Eureka Server</description>
 	<properties>
@@ -47,13 +47,15 @@
 				<version>1.2.2</version>
 				<configuration>
 					<imageName>${docker.registry}/${docker.registry.name}/${project.artifactId}</imageName>
-					<baseImage>openjdk</baseImage>
+					<baseImage>${docker.image}</baseImage>
 					<maintainer>netkiller@msn.com</maintainer>
 					<volumes>/tmp</volumes>
 					<workdir>/srv</workdir>
-					<cmd>["java", "-version"]</cmd>
+					<env>
+						<JAVA_OPTS>-server -Xms512m -Xmx4096m -Djava.security.egd=file:/dev/./urandom</JAVA_OPTS>
+					</env>
 					<exposes>6379</exposes>
-					<entryPoint>["java", "-jar", "-Djava.security.egd=file:/dev/./urandom", "/srv/${project.build.finalName}.jar"]</entryPoint>
+					<entryPoint>["sh", "-c", "java ${JAVA_OPTS} -jar /srv/${project.build.finalName}.jar ${SPRING_OPTS}"]</entryPoint>
 					<resources>
 						<resource>
 							<targetPath>/srv</targetPath>

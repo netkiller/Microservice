@@ -40,6 +40,7 @@
 		<docker.registry>127.0.0.1:5000</docker.registry>
 		<docker.registry.name>netkiller</docker.registry.name>
 		<docker.image.prefix>netkiller</docker.image.prefix>
+		<docker.image>mcr.microsoft.com/java/jre:15-zulu-alpine</docker.image>
 	</properties>
 
 	<repositories>

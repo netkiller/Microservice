@@ -48,13 +48,15 @@
 				<version>1.2.2</version>
 				<configuration>
 					<imageName>${docker.registry}/${docker.registry.name}/${project.artifactId}</imageName>
-					<baseImage>openjdk</baseImage>
+					<baseImage>${docker.image}</baseImage>
 					<maintainer>netkiller@msn.com</maintainer>
 					<volumes>/tmp</volumes>
 					<workdir>/srv</workdir>
-					<cmd>["java", "-version"]</cmd>
+					<env>
+						<JAVA_OPTS>-server -Xms512m -Xmx4096m -Djava.security.egd=file:/dev/./urandom</JAVA_OPTS>
+					</env>
 					<exposes>8888</exposes>
-					<entryPoint>["java", "-jar", "-Djava.security.egd=file:/dev/./urandom", "/srv/${project.build.finalName}.jar"]</entryPoint>
+					<entryPoint>["sh", "-c", "java ${JAVA_OPTS} -jar /srv/${project.build.finalName}.jar ${SPRING_OPTS}"]</entryPoint>
 					<resources>
 						<resource>
 							<targetPath>/srv</targetPath>
@@ -68,7 +70,7 @@
 					<!-- <registryUrl>https://index.docker.io/v1/</registryUrl> -->
 					<registryUrl>http://${docker.registry}/v2/</registryUrl>
 					<imageTags>
-						<!-- <imageTag>${project.version}</imageTag> -->
+						<imageTag>${project.version}</imageTag>
 						<imageTag>latest</imageTag>
 					</imageTags>
 				</configuration>
