@@ -21,8 +21,8 @@ public class TestController {
 		return "Hello world!!!";
 	}
 
-	@GetMapping("/feign")
-	public String testFeign() {
+	@GetMapping("/config")
+	public String config() {
 		return this.testOpenfeign.config();
 	}
 
@@ -37,8 +37,7 @@ public class TestController {
 	@GetMapping("/lb")
 	public String LoadBalancer() {
 		ServiceInstance serviceInstance = this.loadBalancerClient.choose("web");
-		System.out.println("Server: " + serviceInstance.getServiceId() + ":" + serviceInstance.getHost() + ":"
-				+ serviceInstance.getPort());
+		System.out.println("Server: " + serviceInstance.getServiceId() + ":" + serviceInstance.getHost() + ":" + serviceInstance.getPort());
 
 		return serviceInstance.toString();
 	}
