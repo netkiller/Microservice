@@ -37,7 +37,8 @@
 		<maven.compiler.release>${java.version}</maven.compiler.release>
 		<spring-boot.version>2.3.4.RELEASE</spring-boot.version>
 		<spring-cloud.version>Hoxton.SR8</spring-cloud.version>
-		<docker.registry>127.0.0.1:5000</docker.registry>
+		<!-- <docker.registry>127.0.0.1:5000</docker.registry> -->
+		<docker.registry>registry.netkiller.cn:5000</docker.registry>
 		<docker.registry.name>netkiller</docker.registry.name>
 		<docker.image.prefix>netkiller</docker.image.prefix>
 		<docker.image>mcr.microsoft.com/java/jre:15-zulu-alpine</docker.image>
@@ -61,7 +62,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.3.4.RELEASE</version>
-		<relativePath/>
+		<relativePath />
 	</parent>
 
 	<dependencyManagement>
@@ -105,10 +106,35 @@
 		<module>restful</module>
 		<module>sleuth</module>
 		<module>oauth2</module>
-    <module>welcome</module>
-  </modules>
+		<module>welcome</module>
+	</modules>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<profiles.active>dev</profiles.active>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<profiles.active>prod</profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<profiles.active>test</profiles.active>
+			</properties>
+		</profile>
+	</profiles>
 
 	<build>
+		<!-- <resources> <resource> <directory>src/main/resources/</directory> <excludes> <exclude>dev/*</exclude> <exclude>prod/*</exclude> <exclude>test/*</exclude> </excludes> <includes> <include>messages/*</include> </includes> </resource> <resource> <directory>src/main/resources/${profiles.active}</directory> </resource> </resources> -->
 		<plugins>
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -116,42 +142,8 @@
 					<skip>true</skip>
 				</configuration>
 			</plugin>
-			<!-- 
-			<plugin>
-				<groupId>com.spotify</groupId>
-				<artifactId>docker-maven-plugin</artifactId>
-				<version>1.2.2</version>
-				<executions>
-					<execution>
-						<id>build-image</id>
-						<phase>package</phase>
-						<goals>
-							<goal>build</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>tag-image</id>
-						<phase>package</phase>
-						<goals>
-							<goal>tag</goal>
-						</goals>
-						<configuration>
-							<image>my-image:${project.version}</image>
-							<newName>registry.example.com/my-image:${project.version}</newName>
-						</configuration>
-					</execution>
-					<execution>
-						<id>push-image</id>
-						<phase>deploy</phase>
-						<goals>
-							<goal>push</goal>
-						</goals>
-						<configuration>
-							<imageName>registry.example.com/my-image:${project.version}</imageName>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin> -->
+			<!-- <plugin> <groupId>com.spotify</groupId> <artifactId>docker-maven-plugin</artifactId> <version>1.2.2</version> <executions> <execution> <id>build-image</id> <phase>package</phase> <goals> <goal>build</goal> </goals> </execution> <execution> <id>tag-image</id> <phase>package</phase> <goals> <goal>tag</goal> </goals> <configuration> <image>my-image:${project.version}</image> <newName>registry.example.com/my-image:${project.version}</newName> </configuration> </execution> <execution> <id>push-image</id> 
+				<phase>deploy</phase> <goals> <goal>push</goal> </goals> <configuration> <imageName>registry.example.com/my-image:${project.version}</imageName> </configuration> </execution> </executions> </plugin> -->
 		</plugins>
 	</build>
 
