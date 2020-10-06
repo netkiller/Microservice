@@ -12,9 +12,9 @@ public class MicroserviceController {
 	@Autowired
 	private DiscoveryClient discoveryClient;
 
-	@RequestMapping("/")
-	public String index() {
-		return "Hello World";
+	@RequestMapping("/ping")
+	public String ping() {
+		return "pong";
 	}
 
 	@RequestMapping("/services")
