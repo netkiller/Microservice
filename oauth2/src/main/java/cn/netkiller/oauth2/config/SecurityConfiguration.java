@@ -5,6 +5,7 @@ import java.util.UUID;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.OAuth2AuthorizationServerConfiguration;
 import org.springframework.security.core.userdetails.User;
@@ -19,15 +20,18 @@ import org.springframework.security.oauth2.server.authorization.client.Registere
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
-//@Order(90)
-//@EnableWebSecurity
+@Order(100)
+@EnableWebSecurity
 @Configuration
 @Import(OAuth2AuthorizationServerConfiguration.class)
 public class SecurityConfiguration {
 	@Bean
 	public RegisteredClientRepository registeredClientRepository() {
-		RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString()).clientId("client")
-				.clientSecret("secret").clientAuthenticationMethod(ClientAuthenticationMethod.BASIC)
+		RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
+				//
+				.clientId("client").clientSecret("secret")
+				//
+				.clientAuthenticationMethod(ClientAuthenticationMethod.BASIC)
 				// Authorization Code Grant Type
 				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
 				// Client Credentials Grant Type
