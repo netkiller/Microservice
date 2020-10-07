@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -19,13 +19,13 @@ public class MicroserviceController implements HealthIndicator {
 	@Autowired
 	private DiscoveryClient discoveryClient;
 
-	@RequestMapping("/ping")
+	@GetMapping("/ping")
 	public String ping() {
 		logger.info("PONE");
 		return "pong";
 	}
 
-	@RequestMapping("/services")
+	@GetMapping("/services")
 	public List<String> services() {
 		return this.discoveryClient.getServices();
 	}

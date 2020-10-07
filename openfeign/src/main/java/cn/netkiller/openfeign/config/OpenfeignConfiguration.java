@@ -13,19 +13,30 @@ import feign.codec.Decoder;
 
 @Configuration
 public class OpenfeignConfiguration {
-//	@Bean
-//	public Decoder feignDecoder() {
-//		return new ResponseEntityDecoder(new SpringDecoder(feignHttpMessageConverter()));
-//	}
-//
-//	public ObjectFactory<HttpMessageConverters> feignHttpMessageConverter() {
-//		final HttpMessageConverters httpMessageConverters = new HttpMessageConverters(
-//				new MappingJackson2HttpMessageConverter());
-//		return new ObjectFactory<HttpMessageConverters>() {
-//			@Override
-//			public HttpMessageConverters getObject() throws BeansException {
-//				return httpMessageConverters;
-//			}
-//		};
-//	}
+	// @Bean
+	// public Decoder feignDecoder() {
+	// return new ResponseEntityDecoder(new SpringDecoder(feignHttpMessageConverter()));
+	// }
+	//
+	// public ObjectFactory<HttpMessageConverters> feignHttpMessageConverter() {
+	// final HttpMessageConverters httpMessageConverters = new HttpMessageConverters(
+	// new MappingJackson2HttpMessageConverter());
+	// return new ObjectFactory<HttpMessageConverters>() {
+	// @Override
+	// public HttpMessageConverters getObject() throws BeansException {
+	// return httpMessageConverters;
+	// }
+	// };
+	// }
+/*
+	@Bean
+	public Contract feignContract() {
+		return new feign.Contract.Default();
+	}
+
+	@Bean
+	public BasicAuthRequestInterceptor basicAuthRequestInterceptor() {
+		return new BasicAuthRequestInterceptor("user", "password");
+	}
+	*/
 }
