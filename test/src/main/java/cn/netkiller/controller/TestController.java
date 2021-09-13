@@ -1,4 +1,4 @@
-package cn.netkiller;
+package cn.netkiller.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,4 +44,5 @@ public class TestController {
 	public String test3() {
 		return testComponent.test();
 	}
+
 }
