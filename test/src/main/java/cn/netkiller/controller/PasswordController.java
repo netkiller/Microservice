@@ -4,6 +4,7 @@ import org.jasypt.encryption.StringEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,9 +20,15 @@ public class PasswordController {
 		// TODO Auto-generated constructor stub
 	}
 
-	@GetMapping("/password")
-	public String password(@RequestParam("text") String text) {
-		return encryptor.encrypt(text);
+	@GetMapping("/password/encrypt")
+	public String encrypt(@RequestParam("text") String text) {
+		return String.format("ENC(%s)\r\n", encryptor.encrypt(text));
+	}
+
+	@PostMapping("/password/decrypt")
+	public String decrypt(@RequestParam("text") String text) {
+		System.out.println(text);
+		return encryptor.decrypt(text);
 	}
 
 	@GetMapping("/cleartext")
