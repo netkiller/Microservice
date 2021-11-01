@@ -62,7 +62,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.5.5</version>
-		<relativePath/>
+		<relativePath />
 	</parent>
 
 	<dependencyManagement>
@@ -76,7 +76,7 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -108,9 +108,9 @@
 		<module>sleuth</module>
 		<module>oauth2</module>
 		<module>welcome</module>
-    <module>test</module>
-    <module>aliyun</module>
-  </modules>
+		<module>test</module>
+		<module>aliyun</module>
+	</modules>
 
 	<profiles>
 		<profile>
@@ -143,7 +143,26 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<skip>true</skip>
+					<!-- <argLine>${argLine} -Xmx4096m -XX:MaxPermSize=512M ${itCoverageAgent}</argLine> -->
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<!-- <plugin> <groupId>com.spotify</groupId> <artifactId>docker-maven-plugin</artifactId> <version>1.2.2</version> <executions> <execution> <id>build-image</id> <phase>package</phase> <goals> <goal>build</goal> </goals> </execution> <execution> <id>tag-image</id> <phase>package</phase> <goals> <goal>tag</goal> </goals> <configuration> <image>my-image:${project.version}</image> <newName>registry.example.com/my-image:${project.version}</newName> </configuration> </execution> <execution> <id>push-image</id> 
 				<phase>deploy</phase> <goals> <goal>push</goal> </goals> <configuration> <imageName>registry.example.com/my-image:${project.version}</imageName> </configuration> </execution> </executions> </plugin> -->
