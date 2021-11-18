@@ -13,8 +13,8 @@ public class PasswordController {
 	@Autowired
 	private StringEncryptor encryptor;
 
-	@Value("${test.password}")
-	private String cleartext;
+//	@Value("${test.password}")
+//	private String cleartext;
 
 	public PasswordController() {
 		// TODO Auto-generated constructor stub
@@ -31,8 +31,8 @@ public class PasswordController {
 		return encryptor.decrypt(text);
 	}
 
-	@GetMapping("/cleartext")
-	public String getPassword() {
-		return this.cleartext;
-	}
+//	@GetMapping("/cleartext")
+//	public String getPassword() {
+//		return this.cleartext;
+//	}
 }
