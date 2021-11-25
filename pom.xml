@@ -37,11 +37,6 @@
 		<maven.compiler.release>${java.version}</maven.compiler.release>
 		<spring-boot.version>2.4.0.RELEASE</spring-boot.version>
 		<spring-cloud.version>2020.0.4</spring-cloud.version>
-		<!-- <docker.registry>127.0.0.1:5000</docker.registry> -->
-		<docker.registry>registry.netkiller.cn:5000</docker.registry>
-		<docker.registry.name>netkiller</docker.registry.name>
-		<docker.image.prefix>netkiller</docker.image.prefix>
-		<docker.image>mcr.microsoft.com/java/jre:15-zulu-alpine</docker.image>
 	</properties>
 
 	<repositories>
@@ -61,7 +56,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.6</version>
+		<version>2.6.0</version>
 		<relativePath />
 	</parent>
 

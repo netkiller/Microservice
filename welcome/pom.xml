@@ -13,6 +13,11 @@
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- <docker.registry>127.0.0.1:5000</docker.registry> -->
+		<docker.registry>registry.netkiller.cn</docker.registry>
+		<docker.registry.name>netkiller</docker.registry.name>
+		<docker.image.prefix>netkiller</docker.image.prefix>
+		<docker.image>openjdk:17-alpine</docker.image>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -57,7 +62,7 @@
 					<exposes>8080</exposes>
 					<!-- <entryPoint>["java", "-jar", "-Djava.security.egd=file:/dev/./urandom", "/srv/${project.build.finalName}.jar"]</entryPoint> -->
 					<entryPoint>["sh", "-c", "java ${JAVA_OPTS} -jar /srv/${project.build.finalName}.jar"]</entryPoint>
-					<cmd>["java", "-version"]</cmd>
+					<!-- <cmd>["java", "-version"]</cmd> -->
 					<resources>
 						<resource>
 							<targetPath>/srv</targetPath>
