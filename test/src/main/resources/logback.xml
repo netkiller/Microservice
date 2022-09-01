@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration>
+<configuration scan="true" scanPeriod="60 seconds" debug="true">
 	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
 	<include resource="org/springframework/boot/logging/logback/file-appender.xml" />
-	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-		<filter class="ch.qos.logback.core.filter.EvaluatorFilter">
-			<evaluator class="ch.qos.logback.classic.boolex.OnMarkerEvaluator">
-				<marker>NOTIFY_ADMIN</marker>
-			</evaluator>
-			<onMatch>ACCEPT</onMatch>
-			<onMismatch>DENY</onMismatch>
-		</filter>
-		<encoder>
-			<pattern>%date{yyyy-MM-dd HH:mm:ss} %-4relative [%thread] %-5level %logger{35} : %msg %n</pattern>
+
+	<appender name="logstash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+		<destination>127.0.0.1:4567</destination>
+		<encoder class="net.logstash.logback.encoder.LogstashEncoder">
+			<providers>
+				<timestamp />
+				<logLevel />
+				<threadName />
+				<loggerName />
+				<message />
+			</providers>
 		</encoder>
 	</appender>
-	<root level="INFO">
-		<appender-ref ref="STDOUT" />
-		<appender-ref ref="FILE" />
+	<root level="info">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="logstash" />
 	</root>
 </configuration>
